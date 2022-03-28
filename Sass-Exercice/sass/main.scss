@@ -1,0 +1,106 @@
+// variables couleurs
+$yellow: #ff0;
+$light_yellow: #ff4;
+$dark_grey: #222;
+$light_grey: #444;
+$silver: #eee;
+$light: #fff;
+
+// variables fonts
+$grandHotel:"Grand Hotel", serif;
+$openSans:"Open Sans", helvetica, arial, sans-serif;
+
+/* ###################### HEADER #############################*/
+
+header{
+    background-color: $dark_grey;
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+    h1{
+        color: $yellow;
+        font-family: $grandHotel;
+        margin: 0;
+        margin-left: 0px;
+        margin-top: 0px;
+    }
+    p{
+        color: $light;
+        font-family: $openSans;
+    }
+}
+
+#search{
+    display: block;
+    margin: 0 auto;
+    align-self: flex-end;
+}
+
+
+/* navigation */
+
+aside{
+    display: block;
+    background-color: $dark_grey;
+    height: 100%;
+    float: left;
+    padding-top: 100%;
+    padding-bottom: 100%;
+}
+nav{
+    ul{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        li{
+            text-align: center;
+            border-bottom: $yellow 2px solid;
+            width: 50%;
+            margin: 0 auto;
+            padding-bottom: 2%;
+            margin-bottom: 2%;
+            // cible le dernier li
+            &:last-child{ // & est mis pour li
+                border-bottom: 0;
+            }
+            a{
+                color: $silver;
+                font-family: $openSans;
+                text-decoration: none;
+            }
+        }
+    }
+}
+.copyright{
+    display: block;
+    color: $yellow;
+    font-family: $grandHotel;
+    margin-bottom: 0px;
+}
+
+/*################################# SECTIONS ####################################*/
+.limonade{
+    background-image: url(../images/bg-presentation.jpg);
+    background-size:cover;
+    color: $light;
+    padding: 2%;
+    h1{
+        font-family: $grandHotel;
+    }
+    p{
+        font-family: $openSans; 
+    }
+    blockquote{
+        text-align: right;
+        margin-left: 10%;
+        margin-right: 5%;
+        .quote{
+            font-family: $openSans;
+            font-size: 1.2em;
+            font-style: italic;
+        }
+        .mag{
+            font-family: $grandHotel;
+        }
+    }
+}
