@@ -3,6 +3,7 @@ header {
   background-color: #222;
   display: grid;
   grid-template-columns: 50% 50%;
+  grid-template-rows: 28px 22px;
 }
 header h1 {
   color: #ff0;
@@ -10,80 +11,136 @@ header h1 {
   margin: 0;
   margin-left: 0px;
   margin-top: 0px;
+  grid-column: 1;
+  grid-row: 1;
 }
 header p {
   color: #fff;
+  margin-top: 0px;
   font-family: "Open Sans", helvetica, arial, sans-serif;
+  grid-column: 1;
+  grid-row: 2/3;
+  padding-bottom: 10px;
 }
-
-#search {
-  display: block;
-  margin: 0 auto;
-  align-self: flex-end;
+header form {
+  width: 100%;
+  grid-template-columns: 1/3;
+  grid-template-rows: 1/3;
+  margin-right: 0px;
+  margin-top: 0px;
+  height: 50px;
+}
+header form input {
+  height: 60%;
+  width: 70%;
+  float: right;
+  margin-right: 0px;
+  margin-top: 10px;
 }
 
 /* navigation */
-aside {
+.content {
+  display: grid;
+  grid-template-columns: 15% 85%;
+  grid-template-rows: 20% 10% 10% 10% 20%;
+  /*################################# SECTIONS ####################################*/
+}
+.content aside {
   display: block;
   background-color: #222;
   height: 100%;
   float: left;
-  padding-top: 100%;
   padding-bottom: 100%;
+  grid-column: 1;
+  grid-row: 1/6;
 }
-
-nav ul {
+.content nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-nav ul li {
-  text-align: center;
+.content nav ul li {
+  margin-right: 0px;
+  margin-left: 15px;
   border-bottom: #ff0 2px solid;
-  width: 50%;
-  margin: 0 auto;
-  padding-bottom: 2%;
-  margin-bottom: 2%;
+  width: 85%;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
-nav ul li:last-child {
+.content nav ul li:last-child {
   border-bottom: 0;
 }
-nav ul li a {
+.content nav ul li a {
   color: #eee;
   font-family: "Open Sans", helvetica, arial, sans-serif;
   text-decoration: none;
 }
-
-.copyright {
+.content .copyright {
   display: block;
   color: #ff0;
   font-family: "Grand Hotel", serif;
   margin-bottom: 0px;
 }
-
-/*################################# SECTIONS ####################################*/
-.limonade {
+.content main {
+  display: grid;
+  grid-template-rows: 560px 550px 550px 550px 20%;
+}
+.content .limonade {
+  background-color: #222;
   background-image: url(../images/bg-presentation.jpg);
   background-size: cover;
   color: #fff;
-  padding: 2%;
+  width: 100%;
+  height: 50px;
+  margin-right: 50px;
+  padding-bottom: 50%;
+  margin-bottom: 20px;
 }
-.limonade h1 {
+.content .limonade h1 {
   font-family: "Grand Hotel", serif;
+  width: 50%;
+  font-weight: 100;
+  font-size: 52px;
+  letter-spacing: 2px;
+  margin-left: 10px;
 }
-.limonade p {
+.content .limonade p {
   font-family: "Open Sans", helvetica, arial, sans-serif;
+  width: 40%;
+  line-height: 25px;
+  color: #eee;
+  letter-spacing: 1px;
+  margin-left: 10px;
 }
-.limonade blockquote {
+.content .limonade blockquote {
   text-align: right;
   margin-left: 10%;
   margin-right: 5%;
+  width: 40%;
 }
-.limonade blockquote .quote {
+.content .limonade blockquote .quote {
   font-family: "Open Sans", helvetica, arial, sans-serif;
-  font-size: 1.2em;
+  font-size: 35px;
   font-style: italic;
 }
-.limonade blockquote .mag {
+.content .limonade blockquote .mag {
   font-family: "Grand Hotel", serif;
+}
+.content .produits {
+  padding-left: 20px;
+  display: grid;
+  grid-template-rows: 50px 300px 10px;
+}
+.content .produits h1 {
+  font-family: "Grand Hotel", serif;
+  font-weight: 100;
+  grid-row: 1;
+}
+.content .produits .cards {
+  display: flex;
+  flex-direction: row-reverse;
+  grid-row: 2/3;
+}
+.content .produits .more {
+  grid-row: 3/4;
 }
