@@ -1,0 +1,169 @@
+header{
+    background-color: #2b87dc;
+    border: 2px solid black;
+    margin-top: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: flex;
+    justify-content: center;
+}
+li{
+    color: white !important;
+}
+
+header a{
+    
+    text-decoration: none !important;
+    color: white !important
+}
+
+header a:hover{
+    color: yellow !important;
+}
+
+.texte{
+    font-family: 'Dancing Script', cursive;
+
+}
+
+.recherche{
+    margin-top: 10px;
+    background-color: #2b87dc;
+    text-align: center;
+    border: 2px solid black;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.formul{
+    margin-left: 35%;
+    width: 30%;
+    margin-bottom: 10px;
+}
+.btn{
+    margin-bottom: 10px;
+}
+
+.larticle{
+    display: flex;
+    margin-top: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+    justify-content: space-between;
+}
+
+.produit{
+    background-color: #2b87dc;
+    width: 47%;
+    border: 2px solid black;
+}
+
+.produit img{
+    width: 80%;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.produit .lotcarousel{
+    margin-right: 10px;
+}
+.produit h4{
+    margin-top: 10px;
+    margin-left: 10px;
+    color: white !important
+}
+
+.produit p{
+    margin-left: 10px;
+    color: white !important
+}
+
+.produit ul{
+    margin-bottom: 150px;
+}
+
+.produit a{
+    margin-left: 30%;
+    margin-right: 5%;
+    color: #2b87dc;
+}
+
+.alergene{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 10px;
+    background-color: #2b87dc !important;
+    border: 2px solid black;
+    text-align: center;
+    color: white;
+}
+
+.alergene p{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.nutrinova{
+    margin-top: 10px;
+    border: 2px solid black;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: #2b87dc;
+}
+
+.lecarousel{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 30%;
+    margin-left: 35%;
+}
+
+.distrib{
+    margin-top: 10px;
+    background-color: #2b87dc;
+    display: flex;
+    justify-content: space-around;
+    border: 2px solid black;
+    margin-left: 5%;
+    margin-right: 5%;
+    color: white;
+}
+
+.distrib p{
+    width: 15%;
+}
+.cardasauver{
+    margin-bottom: 24px !important;
+}
+
+footer{
+    text-align: center;
+    background-color: #2b87dc;
+    margin-top: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+    border: 2px solid black;
+    padding-top: 10px;
+}
+
+.card{
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+}
+
+.baducoupcestpaslebouton{
+    background-color: white !important;
+}
+
+.aouiceboutonla{
+    background-color: yellowgreen;
+    border-radius: 25px;
+}
+
+.aouiceboutonla:hover{
+    background-color: green;
+    color: blueviolet;
+    border-radius: 25px;
+}
