@@ -1,0 +1,172 @@
+// variables couleurs
+$yellow: #ff0;
+$light_yellow: #ff4;
+$dark_grey: #222;
+$light_grey: #444;
+$silver: #eee;
+$light: #fff;
+
+// variables fonts
+$grandHotel:"Grand Hotel", serif;
+$openSans:"Open Sans", helvetica, arial, sans-serif;
+
+/* ###################### HEADER #############################*/
+
+header{
+    background-color: $dark_grey;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 28px 22px;
+
+    h1{
+        color: $yellow;
+        font-family: $grandHotel;
+        margin: 0;
+        margin-left: 0px;
+        margin-top: 0px;
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    p{
+        color: $light;
+        margin-top: 0px;
+        font-family: $openSans;
+        grid-column: 1;
+        grid-row: 2 / 3;
+        padding-bottom: 10px;
+    }
+    form{
+        width: 100%;
+        grid-template-columns: 1 /3;
+        grid-template-rows: 1 / 3;
+        margin-right: 0px;
+        margin-top: 0px;
+        height: 50px;
+
+        input{
+            height: 60%;
+            width: 70%;
+            float: right;
+            margin-right: 0px;
+            margin-top: 10px;
+        }
+    }
+}
+
+
+
+/* navigation */
+.content{
+    display: grid;
+    grid-template-columns: 15% 85%;
+    grid-template-rows: 20% 10% 10% 10% 20%;
+
+    aside{
+        display: block;
+        background-color: $dark_grey;
+        height: 100%;
+        float: left;
+        padding-bottom: 100%;
+        grid-column: 1;
+        grid-row: 1/6;
+    }
+
+    nav{
+        ul{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            li{
+                margin-right: 0px;
+                margin-left: 15px;
+                border-bottom: $yellow 2px solid;
+                width: 85%;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                // cible le dernier li
+                &:last-child{ // & est mis pour li
+                    border-bottom: 0;
+                }
+                a{
+                    color: $silver;
+                    font-family: $openSans;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+    .copyright{
+        display: block;
+        color: $yellow;
+        font-family: $grandHotel;
+        margin-bottom: 0px;
+    }
+    main{
+        display: grid;
+        grid-template-rows: 560px 550px 550px 550px 20%;
+        
+    }
+
+    /*################################# SECTIONS ####################################*/
+    .limonade{
+        background-color: $dark_grey;
+        background-image: url(../images/bg-presentation.jpg);
+        background-size:cover;
+        color: $light;
+        width:100%;
+        height: 50px;
+        margin-right: 50px;
+        padding-bottom: 50%;
+        margin-bottom: 20px;
+
+        h1{
+            font-family: $grandHotel;
+            width: 50%;
+            font-weight: 100;
+            font-size: 52px;
+            letter-spacing: 2px;
+            margin-left: 10px;
+        }
+        p{
+            font-family: $openSans;
+            width:40%;
+            line-height: 25px;
+            color: $silver;
+            letter-spacing: 1px;
+            margin-left: 10px;
+        }
+        blockquote{
+            text-align: right;
+            margin-left: 10%;
+            margin-right: 5%;
+            width: 40%;
+            .quote{
+                font-family: $openSans;
+                font-size: 35px;
+                font-style: italic;
+            }
+            .mag{
+                font-family: $grandHotel;
+            }
+        }
+    }
+    .produits{
+        padding-left:20px;
+        display: grid;
+        grid-template-rows:50px 300px 10px ;
+        h1{
+            font-family: $grandHotel;
+            font-weight: 100;
+            grid-row: 1;
+        }
+        .cards{
+            display: flex;
+            flex-direction: row-reverse;
+            grid-row: 2/3;
+        }
+        .more{
+            grid-row: 3/4;
+        }
+    }
+}
