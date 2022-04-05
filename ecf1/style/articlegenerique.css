@@ -1,0 +1,62 @@
+
+.list-group{
+    width: 5%;
+    float: right;
+    position: sticky;
+    top: 40px;
+}
+
+.lieu,.event{
+    
+    border: 2px solid blue !important;
+    margin-bottom: 15%;
+    background-color: #333333;
+    color: white;
+    width: 100%;
+    height: 70%;
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: 15% 85%;
+}
+
+.lieu h1, .event h1 {
+    text-align: center;
+    grid-column: 1 / 4;
+    grid-row: 1;
+    font-size: 72px !important;
+}
+
+.lieu p{
+    grid-column: 1 / 3;
+    margin-top: 150px;
+    margin-left: 50px;
+    width: 80%;
+    font-size: 28px;
+}
+
+.event p{
+    grid-column: 2 / 4;
+    margin-top: 50px;
+    margin-left: 50px;
+    width: 80%;
+}
+
+article{
+    margin-bottom: 50px;
+    margin-top: 20px;
+    margin-left: 35%;
+    width: 30%;
+}
+
+table{
+    border: 2px solid blue !important;
+}
+
+tr{
+    color: white;
+
+}
+
+.teteth{
+    text-align: center;
+}

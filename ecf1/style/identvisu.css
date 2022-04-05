@@ -1,0 +1,32 @@
+body{
+    background: url(../image/background.jpg);
+    background-attachment: fixed;
+}
+
+header{
+    position: sticky;
+    top: 0px;
+    background-color: #000f2b;
+}
+
+header .clickable{
+    color: white;
+}
+
+header .clickable:hover{
+    color: yellow;
+}
+
+footer{
+    background-color: #000f2b;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    z-index: 99999999999999;
+}
+
+footer p{
+    margin-bottom: 0px;
+}
