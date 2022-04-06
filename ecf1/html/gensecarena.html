@@ -25,7 +25,15 @@
           </ul>
     </header>
 
-    <!--debut partie commun-->
+    <!--debut page article-->
+
+    <div class="list-group">  <!--Navigation dans la page-->
+      <a href="#lieu" class="list-group-item list-group-item-action">Le lieu</a>
+      <a href="#event" class="list-group-item list-group-item-action">L'incident</a>
+      <a href="#attench" class="list-group-item list-group-item-action">Les info sup</a>
+    </div>
+
+    <div id="lieu"><!--ancrage dans la page pour eviter de couper le haut de la div lieu--></div>
     <Section>
       <div class="lieu">
         <h1>Le lieu</h1>
@@ -35,6 +43,7 @@
         </p>
         <img src="../image/gensecarena.webp" alt="">
       </div>
+      <div id="event"><br><br><br> <!--ancrage dans la page pour eviter de couper le haut de la div event--></div>
       <div class="event">
         <h1>L'incident rattaché a ce lieu</h1>
         <img src="../image/gensecarenaconcert.jpg" alt="">
@@ -44,7 +53,8 @@
       </div>  
     </Section>
 
-    <article>
+    
+    <article id="attench">
       <table class="table table-dark">
         <tbody>
           <tr>
@@ -52,11 +62,11 @@
           </tr>
           <tr>
             <th scope="col">Sujet</th>
-            <th scope="col">Donnée recolter</th>
+            <th scope="col">Donnée recoltée</th>
           </tr>
           <tr>
             <th scope="row">Le préstataire</th>
-            <td>? "bain" ?</td>
+            <td>"bain"</td>
           </tr>
           <tr>
             <th scope="row">Gain minimum éstimé</th>
@@ -82,7 +92,8 @@
       </table>
     </article>
     
-    <!--fin partie commun-->
+
+    <!--fin page article-->
     <footer>
         <p> ce site est fais par A.P, les images viennent du jeux PAYDAY 2
             dont les droit sont detenue par Overkill Software et StarBreeze studio, 

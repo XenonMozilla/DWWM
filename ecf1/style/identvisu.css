@@ -24,7 +24,7 @@ footer{
     width: 100%;
     text-align: center;
     color: white;
-    z-index: 99999999999999;
+    z-index: 99999999999999; /* sert a deal avec le carousel dans l'index */
 }
 
 footer p{
