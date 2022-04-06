@@ -1,0 +1,49 @@
+body{
+    background-color: #7ed3d6;
+}
+.lanav{
+    position: sticky;
+    top: 0px;
+    background-color: antiquewhite;
+    border: 2px solid black;
+}
+
+ul li{
+    margin-left: 100px;
+}
+
+.lotcase{
+    background-color: aliceblue;
+    border: 2px solid black;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: black;
+}
+.lescase{
+    background-color: aliceblue;
+    border: 2px solid black;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.lienennoir{
+    color: black;
+}
+
+.dropdown-menu li{
+    margin-left: 0px;
+}
+footer{
+    bottom: 0px;
+    background-color: black;
+    color: white;
+    width: 100%;
+    position: absolute;
+}
+
+footer p{
+    margin-top: 10px;
+    margin-left: 32px;
+}

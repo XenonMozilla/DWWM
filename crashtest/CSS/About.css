@@ -1,0 +1,17 @@
+section{
+    margin-top: 10px;
+    background-color: antiquewhite;
+    border: 2px solid black;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+embed{
+    margin-left: 10px;
+    width: 90%;
+    height: 55%;
+}
+
+.grobouton{
+    margin-left: 45%;
+}

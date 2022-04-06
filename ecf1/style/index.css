@@ -1,0 +1,78 @@
+section{
+    background-color: #333333;
+    color: white;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 30px;
+    border: blue solid 2px;
+}
+
+section h1{
+    text-align: center;
+}
+
+section p{
+    font-size: 28px;
+    margin-left: 100px;
+    margin-right: 100px;
+
+}
+
+nav{
+    margin-top: 10%;
+    margin-left: 30%;
+    margin-right: 30%;
+    background-color: #333333;
+    border: 2px solid blue;
+    
+}
+
+nav h1{
+    text-align: center;
+    color: white;
+}
+
+nav .card{
+    margin-left: 35%;
+    margin-right: 35%;
+    width: 30%;
+    height: 300px;
+    margin-bottom: 50px
+}
+
+h5{
+    text-align: center;
+}
+
+.btn{
+    margin-right: 25%;
+    margin-left: 25%;
+    min-width: 50%;
+    max-width: 80%;
+}
+
+.card-body{
+    padding: 0 0;
+}
+
+.lieux{
+    margin-bottom: 50px;
+}
+
+.membre h1{
+    border-bottom: 2px solid blue;
+    margin-top: 10px;
+    Padding-bottom: 10px;
+}
+
+.membre div{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid blue;
+}
+
+.membre div img{
+    margin-right: 100px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
