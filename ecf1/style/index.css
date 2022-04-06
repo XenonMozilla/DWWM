@@ -58,3 +58,21 @@ h5{
 .lieux{
     margin-bottom: 50px;
 }
+
+.membre h1{
+    border-bottom: 2px solid blue;
+    margin-top: 10px;
+    Padding-bottom: 10px;
+}
+
+.membre div{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid blue;
+}
+
+.membre div img{
+    margin-right: 100px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}

@@ -5,6 +5,7 @@ body{
 
 header{
     position: sticky;
+    z-index: 99999999999999999;
     top: 0px;
     background-color: #000f2b;
 }
@@ -29,4 +30,8 @@ footer{
 
 footer p{
     margin-bottom: 0px;
+}
+
+iframe{
+    display: none;
 }
