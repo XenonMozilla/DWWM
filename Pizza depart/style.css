@@ -1,0 +1,86 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #30e8bf;  
+    background: linear-gradient(0deg, #30e8bf, #ff8235); /* https://uigradients.com/#Mini */
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  
+  .wrapper {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100%;
+  }
+  
+  .inputfile {
+    width: 0;
+    height: 0;
+  }
+  
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 0;
+    border-radius: 50%;
+    font-family: "Open Sans";
+    font-size: 36px;
+    overflow: hidden;
+    width: 160px;
+    height: 160px;
+    background: #F49390;
+    color: #fff;
+    text-shadow: 2px 2px 1px #A2666F;
+    border: 1px solid #A2666F;
+    box-shadow: 0px 15px 0px #A2666F, 0 0 20px rgba(0,0,0,0.5);
+    margin: 20px;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .button:active {
+    position: relative;
+    top: 15px;
+    box-shadow: 0px 0px 0px #A2666F, 0 0 20px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+  }
+  
+  .filename {
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 0 0;
+  }
+  
+  .preview {
+    position: relative;
+    width: 100%;
+    text-align: center;
+  }
+  .les-pizza{
+    display: flex;
+    justify-content: space-around;
+    
+  }
+
+  .les-pizza div{
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
