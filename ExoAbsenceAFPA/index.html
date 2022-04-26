@@ -2,35 +2,56 @@
     <title>formulaire absence AFPA</title>
 </head>
 <body>
-    <section>
-        <div>
-            <p>Nom : </p>
-            <p>Prenom :</p>
-            <p>formation suivie :</p>
-            <input type="text">
-            <input type="text">
-            <select>
-                <option selected>truc</option>
-                <option value="1">bidule</option>
-                <option value="2">machin</option>
-                <option value="3">chouette</option>
-              </select>
-        </div>
-    </section>
-    <section>
-        <div>
-            <input type="radio" name="same" id="check-1" checked><label>un jour au moins</label>
-            <input type="radio" name="same" id="check-2" checked><label>plus d'un jour</label>
-        </div>
-        <div>
-
-        </div>
-    </section>
-    <section>
-        <div>
-
-        </div>
-    </section>
-
+    <form action="RecupDonnée.html" method="get">
+        <section>
+            <div>
+                <p>Nom : </p>
+                <p>Prenom :</p>
+                <p>formation suivie :</p>
+                <input type="text" name="nom">
+                <input type="text" name="prenon">
+                <select name="formaSuivi">
+                    <option value="truc">truc</option>
+                    <option value="bidule">bidule</option>
+                    <option value="machin">machin</option>
+                    <option value="chouette">chouette</option>
+                  </select>
+            </div>
+        </section>
+        <section>
+            <div>
+                <input type="radio" name="same" id="check-1" value="1" checked onclick="load()"><label>un jour au moins</label>
+                <input type="radio" name="same" id="check-2" value="2" checked onclick="load()"><label>plus d'un jour</label>
+            
+                <div id="un-jour">
+                    <p>Le :</p>
+                    <p>De :</p>
+                    <p>à :</p>
+                    <input type="date" name="dateUn">
+                    <input type="time" name="HeureUn-Un">
+                    <input type="time" name="HeureUn-Deux">
+                </div>
+                <div id="plus-jour">
+                    <p>Du :</p>
+                    <p>Au :</p>
+                    <p>soit </p>
+                    <p>jours complets</p>
+                    <input type="date" name="dateDeux-Un">
+                    <input type="date" name="dateDeux-Deux">
+                    <input type="number" name="ecart">
+                </div>
+            </div>
+            <div>
+    
+            </div>
+        </section>
+        <section>
+            <table style="border: solid black 2px " class="abs">
+    
+            </table>
+        </section>
+        <input type="submit">
+    </form>
+    </button>
     <script src="script.js"></script>
 </body>
