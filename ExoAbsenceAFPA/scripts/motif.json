@@ -35,8 +35,8 @@
                 { "op_id" : "06_03", "op_label" : "Mariage d’un enfant (1 jour)" },
                 { "op_id" : "06_04", "op_label" : "Décès du conjoint ou du partenaire lié par un pactecivil de solidarité ou d’un enfant (2 jours)" },
                 { "op_id" : "06_05", "op_label" : "décès du père, de la mère, du beau-père, de la belle-mère, d'un frère ou d'une sœur (1 jour)" },
-                { "op_id" : "06_05", "op_label" : "Visite médicale obligatoire de la grossesse" },
-                { "op_id" : "06_06", "op_label" : "Stagiaire élu membre du CA d’une caisse de sécurité sociale sociale" }
+                { "op_id" : "06_06", "op_label" : "Visite médicale obligatoire de la grossesse" },
+                { "op_id" : "06_07", "op_label" : "Stagiaire élu membre du CA d’une caisse de sécurité sociale sociale" }
             ]
         },
         {
