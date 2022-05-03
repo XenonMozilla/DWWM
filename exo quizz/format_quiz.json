@@ -1,0 +1,108 @@
+[
+    {
+        "question": "Laquelle de ces sagas n'inclus pas de zombie dans son bestiaire?",
+        "choices": [
+            "Dead or alive",
+            "Left 4 Dead",
+            "Dead Island",
+            "Red Dead Redemption"
+        ],
+        "correct": "Dead or alive",
+        "explanation": "Dead or Alive est une série de jeux de combat en 3D sortis en arcade puis sur différentes consoles, produite par Tecmo."
+    },
+    {
+        "question": "Laquel de ces séries audio est réalisé par François Pérusse??",
+        "choices": [
+            "Reflets  d'Acide",
+            "Clyde Vanilla",
+            "Les 2 minutes du peuple",
+            "Le Donjon de Naheulbeuk"
+        ],
+        "correct": "Les 2 minutes du peuple",
+        "explanation": "Les Deux Minutes du peuple est une série de sketches radiophoniques créée en 1990 et interprétée par l'humoriste québécois François Pérusse. Au total, plus de 3 000 épisodes ont été réalisés, entre 1990 et 1996."
+    },
+    {
+        "question": "Qu'est ce qu'une gousse d'ail jetée contre un mur et qui revient?",
+        "choices": [
+            "une gousse d'ail rebondissante",
+            "elle revient pas elle s'écrase",
+            "le retour du jet d'ail",
+            "une gousse d'ail qui s'est pris un mur dans la gueule"
+        ],
+        "correct": "le retour du jet d'ail",
+        "explanation": "Le retour du jet d'ail = le retour du jedi, Star wars épisode VI de 1983"
+    },
+    {
+        "question": "Le pastafarisme est une fausse religion dans laquelle les adeptes vénèrent : ",
+        "choices": [
+            "John Cena",
+            "Un Monstre Spaghetti Volant",
+            "Raptor Jesus"
+        ],
+        "correct": "Un Monstre Spaghetti Volant",
+        "explanation": "Le pastafarisme est originellement une parodie de religion et un mouvement social qui s'oppose à l'enseignement du créationnisme dans les écoles publiques dont la divinité est le Monstre en spaghetti volant créée en 2005 par Bobby Henderson."
+    },
+    {
+        "question": "Qui est le père de Zeus?",
+        "choices": [
+            "Océan",
+            "Hypérion",
+            "Cronos",
+            "Japet"
+        ],
+        "correct": "Cronos",
+        "explanation": "Cronos ou Kronos est un Titan, fils d'Ouranos (le ciel) et Gaïa (la terre). Il est le père de Zeus, Hestia, Déméter, Héra, Hadès et Poséidon "
+    },
+    {
+        "question": "De qui Jim Henson n'est pas le papa?",
+        "choices": [
+            "Kermit",
+            "Mister Maloke",
+            "Gonzo",
+            "Fozzie"
+        ],
+        "correct": "Mister Maloke",
+        "explanation": "Mister Maloke est un des personnage du groupe hip-hop allemand : Puppetmastaz, il est joué par Paul MP inventeur et leader du groupe"
+    },
+    {
+        "question": "Quelle est la capital du Sri Lanka?",
+        "choices": [
+            "Sri Jayawardenapura Kotte",
+            "Sri Jombawadranepura Kotte",
+            "Sri Jemalobidou Kotte"
+        ],
+        "correct": "Sri Jayawardenapura Kotte",
+        "explanation": "Le Sri Lanka (anciennement Ceylan), pays insulaire situé au sud de l'Inde, dans l'océan Indien. Sri Jayawardenapura Kotte (communément appelée Kotte) est la capitale administrative."
+    },
+    {
+        "question": "L'année du loup garou a était écrit par Stephen King en 1983.",
+        "choices": [
+            "vrai",
+            "faux"
+        ],
+        "correct": "vrai",
+        "explanation": "En effet, L'Année du loup-garou est un roman court fantastique d'horreur écrit par Stephen King et paru en 1983."
+    },
+    {
+        "question": "Qui n'a pas interprété The man who sold the world?",
+        "choices": [
+            "Bowie",
+            "Emel",
+            "Cobain",
+            "Mercury"
+        ],
+        "correct": "Mercury",
+        "explanation": "Freddie Mercury n'a jamais interprété The man who sold the world écrite par David Bowie et Mick Ronson"
+    },
+    {
+        "question": "Quelle citation de film est fausse??",
+        "choices": [
+            "La vie c’est comme une boîte de chocolats, on ne sait jamais sur quoi on va tomber. (Forest Gump)",
+            "Les choses que l’on possède finissent par nous posséder. (Fight Club)",
+            "Là où on va, on n’a pas besoin de route ! (Retour Vers le Futur)",
+            "Luke, je suis ton père (Star Wars)"
+        ],
+        "correct": "Luke, je suis ton père (Star Wars)",
+        "explanation": "En effet, Dark Vador prononce une phrase légèrement différente : « Non, je suis ton père »."
+    }
+]
