@@ -52,9 +52,11 @@ footer p{
     cursor: pointer;
 }
 
-article{
+.info-film{
     margin-top: 10% ;
     margin-left: 20%;
+    margin-bottom: 110px;
+    padding-bottom: 10px;
     background-color: #565656;
     width: 70%;
     padding-left: 10px;
