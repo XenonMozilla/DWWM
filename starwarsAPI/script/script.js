@@ -7,10 +7,12 @@ function chargeAPI(url){
             var stockage = url.slice(22,);
             stockage = stockage.split('/');
             var lienActu = window.location.href;
-            lienActu = lienActu.split('/');
-            switch (stockage[0]){
+            lienActu = lienActu.split('?');
+            lienActu[0] = lienActu[0].split('/')
+            console.log(stockage[stockage.length - 2])
+            switch (stockage[stockage.length - 2]){
                 case 'films':
-                    if (lienActu[lienActu.length - 1] == "lesFilms.html"){
+                    if (lienActu[0][lienActu[0].length - 1] == "lesFilms.html"){
                         startFilms(data);
                     }
                     else{
@@ -18,7 +20,7 @@ function chargeAPI(url){
                     }
                     break;
                 case 'people':
-                    if(lienActu[lienActu.length - 1] == "lesPersonnages.html"){
+                    if(lienActu[0][lienActu[0].length - 1] == "lesPersonnages.html"){
                         startPersonnages(data);
                     }
                     else{
@@ -27,11 +29,11 @@ function chargeAPI(url){
                     
                     break;
                 case 'planets':
-                    if (lienActu[lienActu.length - 1] == "lesPlanetes.html"){
-                        startPlanetes(data);
+                    if (lienActu[0][lienActu[0].length - 1] == "lesPlanetes.html"){
+                        startPlanetes(data,lienActu[1]);
                     }
                     else{
-                        importPlanet(data); 
+                        importPlanet(data,lienActu); 
                     }
                     break;
                 case 'starships':
@@ -43,6 +45,9 @@ function chargeAPI(url){
                 case 'species':
                     importRace(data);
                     break;
+                default :
+                    return data
+                    break;
             }
         });
 }
@@ -51,8 +56,15 @@ function importPerso(data){
     generePerso.innerHTML += "<ul> - " + data.name;
 }
 
-function importPlanet(data) {
-    generePlanetes.innerHTML += "<ul> - " + data.name;
+function importPlanet(data,lienActu) {
+
+    if(lienActu[lienActu.length - 1] == "lesPersonnages.html"){
+        insideArticle.innerHTML += '<a href="lesPlanetes.html?' + data.url + '"> planètes de naissance :'  + data.name + '</a><br>'
+    }
+    else{
+        generePlanetes.innerHTML += "<ul> - " + data.name;
+    }
+    
 }
 
 function importVaisseaux(data){
@@ -71,7 +83,7 @@ function importFilm(data){
     genereFilm.innerHTML += "<ul> - " + data.title;
 }
 
-function startFilms(data){
+function startFilms(data , externe){
 
     var aucunfilm = 0
     var film = document.getElementById("navig");
@@ -108,7 +120,7 @@ function startFilms(data){
     function ajoutFilm(nbr){
 
         if(aucunfilm == 0){
-            document.getElementById("show").style.display = "block";
+            
             aucunfilm = 1;
         }
 
@@ -154,7 +166,7 @@ function startFilms(data){
     }
 }
 
-function startPlanetes(data){
+function startPlanetes(data,externe){
 
     var planet = document.getElementById("navig");
     var recup = 0;
@@ -180,6 +192,17 @@ function startPlanetes(data){
          
     }
 
+    if (externe != undefined){
+        console.log(externe)
+        document.getElementById("show").style.display = "block";
+        recup = 1;
+
+        chargeAPI(externe);
+        console.log(data)
+
+
+    }
+
     function ajoutPlanet(laPlanet){
         if(recup == 0){
             document.getElementById('show').style.display = "block";
@@ -188,12 +211,14 @@ function startPlanetes(data){
 
         
         var comparer = 0;
-         while (laPlanet != data.results[comparer].name){
+        while (laPlanet != data.results[comparer].name){
             comparer += 1;
-        }      
+        } 
+
         var insideArticle = document.getElementById("insideArticle");
         var generePerso = document.getElementById("generePerso");
         var genereFilm = document.getElementById("genereFilm");
+
         insideArticle.innerHTML = "";
         generePerso.innerHTML = "";
         genereFilm.innerHTML = "";
@@ -206,6 +231,7 @@ function startPlanetes(data){
         insideArticle.innerHTML += "<p> gravité de la planète : " + data.results[comparer].gravity + "</p><br>";
         insideArticle.innerHTML += "<p> pourcentage de la planète recouverte d'eau : " + data.results[comparer].surface_water + "%</p><br>";
         insideArticle.innerHTML += "<p> Population de la planètes : " + data.results[comparer].population + " habitant</p><br>";
+
     
         if (data.results[comparer].residents.length == 0){
             generePerso.innerHTML += "<ul>aucun personnage ne viens de cette planète</ul>";
@@ -246,10 +272,73 @@ function startPersonnages(data){
         })();
     }
 
-    function ajoutPersonnage(){
+    function ajoutPersonnage(perso){
         if(recup == 0){
             document.getElementById('show').style.display = "block";
             recup = 1;
         }
+
+        var comparer = 0;
+
+        while (perso != data.results[comparer].name){
+            comparer += 1;
+        } 
+
+        var insideArticle = document.getElementById("insideArticle");
+        var genereFilm = document.getElementById("genereFilm");
+        var genereRace = document.getElementById("genereRace");
+        var genereVaisseaux = document.getElementById("genereVaisseaux");
+        var genereVehicule = document.getElementById("genereVehicule");
+
+        insideArticle.innerHTML = "";
+        genereFilm.innerHTML = "";
+        genereRace.innerHTML = "";
+        genereVehicule.innerHTML = "";
+        genereVaisseaux.innerHTML = "";
+
+        insideArticle.innerHTML += "<h1>" + data.results[comparer].name;
+        insideArticle.innerHTML += "<p> taille : " + data.results[comparer].height + "cm</p><br>"
+        insideArticle.innerHTML += "<p> poids : " + data.results[comparer].mass + "kg </p><br>"
+        insideArticle.innerHTML += "<p> couleur de cheveux : " + data.results[comparer].hair_color + "</p><br>"
+        insideArticle.innerHTML += "<p> couleur de peau : " + data.results[comparer].skin_color + "</p><br>"
+        insideArticle.innerHTML += "<p> couleur des yeux : " + data.results[comparer].eye_color + "</p><br>"
+        insideArticle.innerHTML += "<p> année de naissance : " + data.results[comparer].birth_year + "</p><br>"
+        insideArticle.innerHTML += "<p> genre : " + data.results[comparer].gender + "</p><br>"
+        chargeAPI(data.results[comparer].homeworld)
+
+        for (x = 0; x < data.results[comparer].films.length; x++){
+            chargeAPI(data.results[comparer].films[x]);
+        }
+
+        if (data.results[comparer].species.length == 0){
+            genereRace.innerHTML += "<ul>L'espece de ce personnage n'est pas spécifier</ul>";
+        }
+
+        else{
+            for (x = 0; x < data.results[comparer].species.length; x++){
+                chargeAPI(data.results[comparer].species[x]);
+            }
+        }
+
+        if (data.results[comparer].vehicles.length == 0){
+            genereVehicule.innerHTML += "<ul>Le personnage ne conduit aucun vehicule</ul>";
+        }
+
+        else{
+            for (x = 0; x < data.results[comparer].vehicles.length; x++){
+                chargeAPI(data.results[comparer].vehicles[x]);
+            }
+        }
+
+        if (data.results[comparer].starships.length == 0){
+            genereVaisseaux.innerHTML += "<ul>Le personnage ne pilote aucun vaisseau</ul>";
+        }
+
+        else{
+            for (x = 0; x < data.results[comparer].starships.length; x++){
+                chargeAPI(data.results[comparer].starships[x]);
+            }
+        }
+
     }
 }
