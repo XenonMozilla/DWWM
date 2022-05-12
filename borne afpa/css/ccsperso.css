@@ -1,0 +1,39 @@
+.fullhead{
+    height: 16%;
+    width: 100% !important;
+}
+
+.fullhead .marchestp{
+    margin-left: 46%;
+    margin-right: 43%;
+    margin-top: 15px;
+    height: 70%;
+}
+
+.trever{
+    height: 5%;
+    width: 100% !important;
+    background-color:  #87bb34;
+}
+
+.corps{
+    background-color:  #e3007e;
+    height: 74%;
+    width: 100% !important;
+}
+
+.carou{
+    width: 100% !important;
+}
+
+.ultracard{
+    margin-top: 5%;
+    margin-left: 35%;
+    margin-bottom: 12%;
+    width: 30%;
+}
+
+.imgrentrestp{
+    width: 50%;
+}
+

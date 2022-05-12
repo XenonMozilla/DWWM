@@ -1,0 +1,24 @@
+{
+    "nom": "marchello ravioli",
+    "slogan": "promis y'a pas de lorem ipsum pour le slogan !",
+    "pizzas": [
+        {
+            "nomPizza" : "le blaspheme",
+            "prix" : "58,99 Euro",
+            "image" : "images/pizza_blaspheme.webp",
+            "garniture" : ["Ananas", "Brocolis"]
+        },
+        {
+            "nomPizza" : "le Mac'Souffrance",
+            "prix" : "999,07 euro",
+            "image" : "images/pizza_piment.jpeg",
+            "garniture" : ["Jalapenos", "Pepperoni" , "Piment forts", "Poivrons verts"]
+        },
+        {
+            "nomPizza" : "le vegan",
+            "prix" : "78.99 euro",
+            "image" : "images/pizza_vegan.jpg",
+            "garniture" : ["Anchois", "Bacon", "Extra fromage", "Feta", "Fromage bleu", "Jambon", "Pepperoni" , "Salami", "Saucisse"]
+        }
+    ]
+}

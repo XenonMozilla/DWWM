@@ -1,0 +1,87 @@
+.info-perso{
+    border: solid black 2px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 32px 32px 32px;
+}
+
+.nom{
+    margin-top: 0px;
+    grid-row: 1;
+    grid-column: 1;
+}
+.prenom{
+    margin-top: 0px;
+    grid-row: 2/3;
+    grid-column: 1;
+}
+.forma-suivi{
+    margin-top: 0px;
+    grid-row: 3/4;
+    grid-column: 1;
+}
+.champ-nom{
+    height: 50%;
+    grid-row: 1;
+    grid-column: 2/3;
+}
+.champ-prenom{
+    height: 50%;
+    grid-row: 2/3;
+    grid-column: 2/3;
+}
+.champ-forma{
+    margin-bottom: 0px;
+    height: 50%;
+    grid-row: 3/4;
+    grid-column: 2/3;
+}
+#un-jour{
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 32px 32px 32px;
+    margin: 10px 10px 10px 10px;
+}
+.le{
+    grid-column: 1;
+    grid-row: 1 ;
+}
+.de{
+    grid-row: 2/3;
+}
+.a{
+    grid-row: 3/4;
+}
+
+#plus-jour{
+ grid-template-columns: 15% 25% 50%;
+ grid-template-rows: 32px 32px 32px;
+}
+.du{
+    grid-row: 1;
+}
+.au{
+    grid-row: 2/3;
+}
+.soit{
+    grid-row: 3/4;
+}
+.jour{
+    grid-row: 3/4;
+    grid-column: 3/4;
+    margin-left: 10px;
+}
+.du-champ{
+    grid-row: 1;
+    grid-column: 2/4;
+}
+.au-champ{
+    grid-row: 2/3;
+    grid-column: 2/4;
+}
+.soit-champs{
+    grid-row: 3/4;
+    grid-column: 2/3;
+}

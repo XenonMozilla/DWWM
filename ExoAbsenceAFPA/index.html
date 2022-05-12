@@ -1,0 +1,58 @@
+<head>
+    <title>formulaire absence AFPA</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <form action="RecupDonnée.html" method="get">
+        <section style="width: 25%;">
+            <div class="info-perso">
+                <p class="nom">Nom : </p>
+                <p class="prenom">Prenom :</p>
+                <p class="forma-suivi">formation suivie :</p>
+                <input type="text" name="nom" class="champ-nom">
+                <input type="text" name="prenom" class="champ-prenom">
+                <select name="formaSuivi" class="champ-forma">
+                    <option value="CDA">CDA</option>
+                    <option value="DWWM">DWWM</option>
+                    <option value="TSSR">TSSR</option>
+                    <option value="Ect">Ect</option>
+                  </select>
+            </div>
+        </section>
+        <section>
+            <div style="width: 25%; border: 2px solid black; margin-top: 10px; margin-bottom: 10px;">
+                <input type="radio" name="same" id="check-1" value="1" checked onclick="load()"><label>un jour au moins</label>
+                <input type="radio" name="same" id="check-2" value="2" checked onclick="load()"><label>plus d'un jour</label>
+            
+                <div id="un-jour">
+                    <p class="le">Le :</p>
+                    <p class="de">De :</p>
+                    <p class="a">à :</p>
+                    <input type="date" name="dateUn">
+                    <input type="time" name="HeureUn-Un">
+                    <input type="time" name="HeureUn-Deux">
+                </div>
+                <div id="plus-jour">
+                    <p class="du">Du :</p>
+                    <p class="au">Au :</p>
+                    <p class="soit">soit </p>
+                    <p class="jour">jours complets</p>
+                    <input type="date" name="dateDeux-Un" class="du-champ">
+                    <input type="date" name="dateDeux-Deux" class="au-champ">
+                    <input type="number" name="ecart" class="soit-champ">
+                </div>
+            </div>
+            <div>
+    
+            </div>
+        </section>
+        <section>
+            <table style="border: solid black 2px " class="abs">
+    
+            </table>
+        </section>
+        <input type="submit">
+    </form>
+    </button>
+    <script src="scripts/script.js"></script>
+</body>
