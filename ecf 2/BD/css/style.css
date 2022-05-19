@@ -51,3 +51,8 @@ input:focus:invalid {
 #erreur {
   color: red;
 }
+
+#listeBD{
+  display: grid;
+  grid-template-columns: 16% 16% 16% 16% 16% 16%;
+}

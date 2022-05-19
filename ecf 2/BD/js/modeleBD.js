@@ -78,7 +78,7 @@ jQuery(document).ready(function ($) {
 
 	var id = document.getElementById("id");
 	id.addEventListener("change", function () {
-		getAlbum(this)
+		getAlbum(this.value)
 	});
 
 
@@ -90,7 +90,7 @@ jQuery(document).ready(function ($) {
 	 */
 	function getAlbum(num) {
 
-		var album = albums.get(num.value);
+		var album = albums.get(num);
 
 		if (album === undefined) {
 			txtSerie.value = "";
@@ -108,6 +108,7 @@ jQuery(document).ready(function ($) {
 			var serie = series.get(album.idSerie);
 			var auteur = auteurs.get(album.idAuteur);
 
+			id.value = num;
 			txtSerie.value = serie.nom;
 			txtNumero.value = album.numero;
 			txtTitre.value = album.titre;
@@ -192,9 +193,11 @@ jQuery(document).ready(function ($) {
 		var panierTitle = txtTitre.value;
 		var panierLinkAlbum = srcAlbumMini + txtSerie.value + "-" + txtNumero.value + "-" + txtTitre.value + ".jpg";
 		panierLinkAlbum = panierLinkAlbum.replace("'", "");
-		console.log(panierLinkAlbum);
 		var compar = false;
-		var order = 0
+		var order = 0;
+		var hello = "hello";
+		var world = "world";
+		console.log (hello + world);
 		var keep = 0;
 		var panierPrix = parseFloat(txtPrix.value);
 		var prixOriginal = parseFloat(txtPrix.value);
@@ -209,17 +212,15 @@ jQuery(document).ready(function ($) {
 			}
 		}
 
-		if (compar == false){//Si item n'est pas dans le panier
+		if (compar == false && plus == undefined){//Si item n'est pas dans le panier
 			var nbrExemplaire = 1;
 			panier.push ({panierTitle, panierLinkAlbum, nbrExemplaire, panierPrix, prixOriginal, order});
 			order += 1;
-			console.log("livre ajouter")
 		}
 
 		else if(plus == undefined){//si item deja dans le panier mais pas ajouter depuis celui ci
 			panier[keep].nbrExemplaire += 1;
 			panier[keep].panierPrix += panierPrix;
-			console.log("+1")
 		}
 
 		else{//si item ajouter depuis le panier
@@ -238,7 +239,7 @@ jQuery(document).ready(function ($) {
 		for (x = 0; x < panier.length; x++){
 			var nouvItemPanier = document.createElement('div');
 			nouvItemPanier.setAttribute("id", "item" + x);
-			nouvItemPanier.setAttribute("class", "item")
+			nouvItemPanier.setAttribute("class", "item");
 			nouvItemPanier.innerHTML += "<h4>" + panier[x].panierTitle + "</h4>";
 			nouvItemPanier.innerHTML += "<h6>nombre d'exemplaire : " + panier[x].nbrExemplaire + "</h6>";
 			nouvItemPanier.innerHTML += "<h6> prix : " + panier[x].panierPrix + " euro </h6>";
@@ -273,10 +274,7 @@ jQuery(document).ready(function ($) {
 	//DEBUT PARTIE SUPPR PANIER
 	function supprimerPanier(itemASupprimer){
 
-		console.log (itemASupprimer)
-		console.log(panier[itemASupprimer])
-
-		var prixARetier = panier[itemASupprimer].prixOriginal
+		var prixARetier = panier[itemASupprimer].prixOriginal;
 
 		if (panier[itemASupprimer].nbrExemplaire > 1){
 			panier[itemASupprimer].nbrExemplaire -= 1;
@@ -297,7 +295,7 @@ jQuery(document).ready(function ($) {
 		for (x = 0; x < panier.length; x++){
 			var nouvItemPanier = document.createElement('div');
 			nouvItemPanier.setAttribute("id", "item" + x);
-			nouvItemPanier.setAttribute("class", "item")
+			nouvItemPanier.setAttribute("class", "item");
 			nouvItemPanier.innerHTML += "<h4>" + panier[x].panierTitle + "</h4>";
 			nouvItemPanier.innerHTML += "<h6>nombre d'exemplaire : " + panier[x].nbrExemplaire + "</h6>";
 			nouvItemPanier.innerHTML += "<h6> prix : " + panier[x].panierPrix + " euro </h6>";
@@ -325,20 +323,107 @@ jQuery(document).ready(function ($) {
 		}
 	}
 
-	//FIN PARTIE SUPPR PANIER
+	//FIN PARTI SUPPR PANIER
 
-	// albums.forEach(album => {
-	// 	console.log(album)
-    // });
-	var truc = new Array;
+	var lesBD = new Array;
 
-	// function mapToObject(map) {
-	// 	truc = Object.assign(Object.create(null), ...[...map].map(v => ({ [v[0]]: v[1] })));
-	// }
+	//GENERER TOUT LES BD EN BAS
+	var listeBD = document.getElementById('listeBD');
+	
+	function genereTousBd(){
+		
+		var x = 0;
+		for (const element of albums) {
+			lesBD[x] = [element[1].titre, element[1].idSerie, element[1].numero, element[0], element[1].idAuteur];
+			x += 1;
+		}
 
-	// mapToObject(albums);
+		for (x = 0; x < lesBD.length; x++){
+			var nouvelleBD = document.createElement('div');
+			nouvelleBD.setAttribute("id", lesBD[x][3]);
 
-	// console.log(truc.indexOf(titre))
+			var nouvSerie = series.get(lesBD[x][1]);
 
-	console.log(albums)
+			var creerImageBD = nouvSerie.nom + "-" + lesBD[x][2] + "-" + lesBD[x][0];
+			creerImageBD = creerImageBD.replace(/'|!|\?|\.|"|:|\$/g, "");
+
+			link = srcAlbumMini + creerImageBD + '.jpg';
+			nouvelleBD.innerHTML = '<img src="' + link + '">';
+
+			listeBD.appendChild(nouvelleBD);
+			console.log(lesBD[x][3]);
+
+			let recupID = lesBD[x][3];
+
+			(function () {
+				document.getElementById(lesBD[x][3]).addEventListener("click", function(){
+					getAlbum(recupID);
+				});
+			})();
+		}
+	}
+	genereTousBd()
+	//FIN GENERER
+
+	//DEBUT FILTRE
+	var listeAFiltrer = listeBD.getElementsByTagName("div");
+	document.getElementById("search").addEventListener("click", function(){
+		var unTitre = document.getElementById("unTitre");
+		var unAuteur = document.getElementById("unAuteur");
+		var uneSerie = document.getElementById("uneSerie");
+		var recherche = document.getElementById("recherche");
+		var erreur0Choix = document.getElementById("erreur0Choix");
+		var recherche = document.getElementById("champRecherche");
+		if (unTitre.checked == false && unAuteur.checked == false && uneSerie.checked == false){
+			erreur0Choix.style.display = "block";
+		}
+		else if(unTitre.checked == true){
+			document.getElementById("reset").style.display = "block";
+			erreur0Choix.style.display = "none";
+			filtrer("titre",recherche.value);
+		}
+	});
+
+	document.getElementById("reset").addEventListener("click", function(){
+		for (x = 0; x < listeAFiltrer.length; x++){
+			listeAFiltrer[x].style.display = 'block'			
+		}
+	});
+
+	
+
+
+	
+	function filtrer(status,results){
+		
+		console.log(listeAFiltrer);
+		if (status == "titre"){
+			for(x = 0; x < listeAFiltrer.length; x++){
+				listeAFiltrer[x].style.display = "none"
+			}
+
+			var allTitre;
+			for(y = 0; y < lesBD.length; y++){
+				if(lesBD[y][0] ==  results){
+					console.log (results + lesBD[y][0])
+					allTitre = lesBD[y][3]
+					console.log(allTitre)
+				}
+			}
+
+			for(x = 0; x < listeAFiltrer.length; x++) {
+				var idfiltre = listeAFiltrer[x].getAttribute("id");
+				for(y = 0; y < allTitre.length; y++){
+					if(idfiltre == allTitre){
+						document.getElementById(idfiltre).style.display = "block";
+						console.log (idfiltre + " " + allTitre)
+					}
+				}
+			}
+		}		
+		
+	}
+
+	//FIN FILTRE
+
 });

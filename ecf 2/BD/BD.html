@@ -50,8 +50,18 @@
             </div>
 
         </div>
+        <input type="radio" id="unTitre" name="1"><label>recherche par titre</label>
+        <input type="radio" id="unAuteur" name="1"><label>recherche par auteur</label>
+        <input type="radio" id="uneSerie" name="1"><label>recherche par serie</label>
+        <input type="text" placeholder="recherche" id="champRecherche">
+        <input type="button" value="chercher" id="search"><label style="display: none;" id="erreur0Choix">erreur : aucun choix selectionner</label>
+        <input type="button" value="reset" id="reset" style="display: none;">
+        <section id="listeBD">
+            
 
-        <div id="divPanier">
+        </section>
+
+        <footer id="divPanier">
             <h1>Panier : <span id="nbrContenuPanier"></span> items - Total : <span id="totalPanier"></span> Euro</h1>
 
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
@@ -76,7 +86,7 @@
                   </div>
                 </div>
               </div>
-        </div>
+            </footer>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
