@@ -43,22 +43,27 @@
                 </div>
             </div>
             <div class="col-sm-8 col-lg-6">
-
                 <img src="images/noComics.jpeg" id="album">
-                <div id="toPanier">Cliquer pour envoyer au panier</div>
-
             </div>
-
+          <div id="toPanier">Cliquer pour envoyer au panier</div>
         </div>
-        <input type="radio" id="unTitre" name="1"><label>recherche par titre</label>
-        <input type="radio" id="unAuteur" name="1"><label>recherche par auteur</label>
-        <input type="radio" id="uneSerie" name="1"><label>recherche par serie</label>
-        <input type="text" placeholder="recherche" id="champRecherche">
-        <input type="button" value="chercher" id="search"><label style="display: none;" id="erreur0Choix">erreur : aucun choix selectionner</label>
-        <input type="button" value="reset" id="reset" style="display: none;">
+        <div id="radioettruc">
+          <div>
+            <input type="radio" id="unTitre" name="1"><label>recherche par titre</label>
+          </div>
+          <div>
+            <input type="radio" id="unAuteur" name="1"><label>recherche par auteur</label>
+          </div>
+          <div>
+            <input type="radio" id="uneSerie" name="1"><label>recherche par serie</label>
+          </div>
+          <input type="text" placeholder="recherche" id="champRecherche">
+          <input type="button" value="chercher" id="search"><label style="display: none;" id="erreur0Choix">erreur : aucun choix selectionner</label>
+          <input type="button" value="reset" id="reset" style="display: none;">
+        </div>
+        
         <section id="listeBD">
-            
-
+            <h1 id="aucunResult">Aucun Resultat</p>
         </section>
 
         <footer id="divPanier">
@@ -67,26 +72,26 @@
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
                 Panier
               </button>
-              
-            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">Panier :</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div id="contenuPanier"></div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer le panier</button>
-                    </div>
-                  </div>
-                </div>
+        </footer>
+
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Panier :</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
-            </footer>
+              <div class="modal-body">
+                <div id="contenuPanier"></div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer le panier</button>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

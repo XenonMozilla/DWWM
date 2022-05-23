@@ -188,16 +188,14 @@ jQuery(document).ready(function ($) {
 
 	function ajouterPanier (plus){
 
-		
-
 		var panierTitle = txtTitre.value;
 		var panierLinkAlbum = srcAlbumMini + txtSerie.value + "-" + txtNumero.value + "-" + txtTitre.value + ".jpg";
 		panierLinkAlbum = panierLinkAlbum.replace("'", "");
 		var compar = false;
 		var order = 0;
-		var hello = "hello";
-		var world = "world";
-		console.log (hello + world);
+		// var hello = "hello ";
+		// var world = "world";
+		// console.log (hello + world);
 		var keep = 0;
 		var panierPrix = parseFloat(txtPrix.value);
 		var prixOriginal = parseFloat(txtPrix.value);
@@ -216,36 +214,43 @@ jQuery(document).ready(function ($) {
 			var nbrExemplaire = 1;
 			panier.push ({panierTitle, panierLinkAlbum, nbrExemplaire, panierPrix, prixOriginal, order});
 			order += 1;
+			total += panierPrix;
 		}
 
 		else if(plus == undefined){//si item deja dans le panier mais pas ajouter depuis celui ci
 			panier[keep].nbrExemplaire += 1;
 			panier[keep].panierPrix += panierPrix;
+			total += panierPrix;
 		}
 
 		else{//si item ajouter depuis le panier
 			panier[plus].nbrExemplaire += 1;
-			panier[plus].panierPrix += panierPrix;
+			panier[plus].panierPrix += panier[plus].prixOriginal;
+			total += panier[plus].prixOriginal;
 		}
 
-		total += panierPrix;
+		
 		count += 1;
 		nbrContenuPanier.innerHTML = count;
-		totalPanier.innerHTML = total;
+		totalPanier.innerHTML = Math.round(total*100)/100;;
 
 
 		contenuPanier.innerHTML = "";
+
 		
 		for (x = 0; x < panier.length; x++){
 			var nouvItemPanier = document.createElement('div');
+			var plusEtMoins = document.createElement('div');
+			plusEtMoins.setAttribute("id","plusEtMoins");
 			nouvItemPanier.setAttribute("id", "item" + x);
 			nouvItemPanier.setAttribute("class", "item");
 			nouvItemPanier.innerHTML += "<h4>" + panier[x].panierTitle + "</h4>";
 			nouvItemPanier.innerHTML += "<h6>nombre d'exemplaire : " + panier[x].nbrExemplaire + "</h6>";
 			nouvItemPanier.innerHTML += "<h6> prix : " + panier[x].panierPrix + " euro </h6>";
 			nouvItemPanier.innerHTML += '<img src="' + panier[x].panierLinkAlbum + '">';
-			nouvItemPanier.innerHTML += '<h4 id="ajou' + x + '">+</h4>';
-			nouvItemPanier.innerHTML += '<h4 id="suppr' + x + '">-</h4>';
+			plusEtMoins.innerHTML += '<h4 class="click" id="ajou' + x + '">+</h4>';
+			plusEtMoins.innerHTML += '<h4 class="click" id="suppr' + x + '">-</h4>';
+			nouvItemPanier.appendChild(plusEtMoins);
 			contenuPanier.appendChild(nouvItemPanier);
 
 			let posiSuppr = x;
@@ -262,12 +267,7 @@ jQuery(document).ready(function ($) {
 				});
 			})();
 		}
-		
-	
 
-		console.log(compar);
-		
-		console.log (panier);
 	}
 	//FIN PARTIE AJOU PANIER
 
@@ -294,14 +294,17 @@ jQuery(document).ready(function ($) {
 
 		for (x = 0; x < panier.length; x++){
 			var nouvItemPanier = document.createElement('div');
+			var plusEtMoins = document.createElement('div');
+			plusEtMoins.setAttribute("id","plusEtMoins");
 			nouvItemPanier.setAttribute("id", "item" + x);
 			nouvItemPanier.setAttribute("class", "item");
 			nouvItemPanier.innerHTML += "<h4>" + panier[x].panierTitle + "</h4>";
 			nouvItemPanier.innerHTML += "<h6>nombre d'exemplaire : " + panier[x].nbrExemplaire + "</h6>";
 			nouvItemPanier.innerHTML += "<h6> prix : " + panier[x].panierPrix + " euro </h6>";
 			nouvItemPanier.innerHTML += '<img src="' + panier[x].panierLinkAlbum + '">';
-			nouvItemPanier.innerHTML += '<h4 id="ajou' + x + '">+</h4>';
-			nouvItemPanier.innerHTML += '<h4 id="suppr' + x + '">-</h4>';
+			plusEtMoins.innerHTML += '<h4 class="click" id="ajou' + x + '">+</h4>';
+			plusEtMoins.innerHTML += '<h4 class="click" id="suppr' + x + '">-</h4>';
+			nouvItemPanier.appendChild(plusEtMoins);
 			contenuPanier.appendChild(nouvItemPanier);
 		}
 
@@ -329,18 +332,23 @@ jQuery(document).ready(function ($) {
 
 	//GENERER TOUT LES BD EN BAS
 	var listeBD = document.getElementById('listeBD');
+
+	var aucunResult = document.getElementById('aucunResult');
 	
 	function genereTousBd(){
+
+		aucunResult.style.display = "none";
 		
-		var x = 0;
+		var w = 0;
 		for (const element of albums) {
-			lesBD[x] = [element[1].titre, element[1].idSerie, element[1].numero, element[0], element[1].idAuteur];
-			x += 1;
+			lesBD[w] = [element[1].titre, element[1].idSerie, element[1].numero, element[0], element[1].idAuteur];
+			w += 1;
 		}
 
 		for (x = 0; x < lesBD.length; x++){
 			var nouvelleBD = document.createElement('div');
 			nouvelleBD.setAttribute("id", lesBD[x][3]);
+			nouvelleBD.setAttribute("class", "bd");
 
 			var nouvSerie = series.get(lesBD[x][1]);
 
@@ -351,18 +359,18 @@ jQuery(document).ready(function ($) {
 			nouvelleBD.innerHTML = '<img src="' + link + '">';
 
 			listeBD.appendChild(nouvelleBD);
-			console.log(lesBD[x][3]);
 
 			let recupID = lesBD[x][3];
 
 			(function () {
 				document.getElementById(lesBD[x][3]).addEventListener("click", function(){
 					getAlbum(recupID);
+					$("html, body").animate({ scrollTop: 0 }, "slow");
 				});
 			})();
 		}
 	}
-	genereTousBd()
+	genereTousBd();
 	//FIN GENERER
 
 	//DEBUT FILTRE
@@ -382,12 +390,24 @@ jQuery(document).ready(function ($) {
 			erreur0Choix.style.display = "none";
 			filtrer("titre",recherche.value);
 		}
+		else if(unAuteur.checked == true){
+			document.getElementById("reset").style.display = "block";
+			erreur0Choix.style.display = "none";
+			filtrer("auteur",recherche.value);
+		}
+		else if(uneSerie.checked == true){
+			document.getElementById("reset").style.display = "block";
+			erreur0Choix.style.display = "none";
+			filtrer("serie",recherche.value);
+		}
 	});
 
 	document.getElementById("reset").addEventListener("click", function(){
 		for (x = 0; x < listeAFiltrer.length; x++){
-			listeAFiltrer[x].style.display = 'block'			
+			listeAFiltrer[x].style.display = 'block';		
 		}
+		document.getElementById("reset").style.display = "none";
+		aucunResult.style.display = "none";
 	});
 
 	
@@ -395,33 +415,98 @@ jQuery(document).ready(function ($) {
 
 	
 	function filtrer(status,results){
-		
-		console.log(listeAFiltrer);
-		if (status == "titre"){
-			for(x = 0; x < listeAFiltrer.length; x++){
-				listeAFiltrer[x].style.display = "none"
+		var trouver = new Boolean;
+
+		for(x = 0; x < listeAFiltrer.length; x++){//cacher tout les album pour afficher ceux du filtre
+				listeAFiltrer[x].style.display = "none";
 			}
 
-			var allTitre;
-			for(y = 0; y < lesBD.length; y++){
+		if (status == "titre"){ //filtrer par titre
+			var allTitre = new Array;
+			var w = 0;
+			for(y = 0; y < lesBD.length; y++){//chercher le titre de l'album pour avoir l'id album
 				if(lesBD[y][0] ==  results){
-					console.log (results + lesBD[y][0])
-					allTitre = lesBD[y][3]
-					console.log(allTitre)
+					allTitre[w] = lesBD[y][3];
+					w += 1;
 				}
 			}
 
-			for(x = 0; x < listeAFiltrer.length; x++) {
+			for(x = 0; x < listeAFiltrer.length; x++) {//afficher tout les album correspondant au filtre
 				var idfiltre = listeAFiltrer[x].getAttribute("id");
 				for(y = 0; y < allTitre.length; y++){
 					if(idfiltre == allTitre){
-						document.getElementById(idfiltre).style.display = "block";
-						console.log (idfiltre + " " + allTitre)
+						document.getElementById(idfiltre[y]).style.display = "block";
+						trouver = true;
 					}
 				}
 			}
-		}		
-		
+		}
+				
+		if (status == "auteur"){//trier par auteur
+			var cetteAuteur;
+			for (const element of auteurs) {//chercher l'auteur pour avoir l'id auteur
+				if (element[1].nom == results){
+					cetteAuteur = element[0];
+				}
+			}
+
+			var allAuteur = new Array;
+			var w = 0;
+
+			for (y = 0; y < lesBD.length; y++){//chercher l'id auteur pour avoir l'id album
+				if(lesBD[y][4] == cetteAuteur){
+					allAuteur[w] = lesBD[y][3];
+					w += 1;
+				}
+			}
+
+			for (x = 0; x < listeAFiltrer.length; x++){//afficher tout les album correspondant au filtre
+				var idfiltre = listeAFiltrer[x].getAttribute("id");
+				for(y = 0; y < allAuteur.length; y++){
+					if(idfiltre == allAuteur[y]){
+						document.getElementById(idfiltre).style.display = "block";
+						trouver = true;
+					}
+				}
+			}
+		}
+
+		if (status == "serie"){//trier par serie
+			var cetteSerie;
+			for (const element of series) {
+				if (element[1].nom == results){//chercher la serie pour avoir l'id serie
+					console.log(element[1].nom)
+					cetteSerie = element[0];
+				}
+			}
+
+			var allSerie = new Array;
+			var w = 0;
+
+			for (y = 0; y < lesBD.length; y++){//chercher l'id serie pour avoir l'id album
+				if(lesBD[y][1] == cetteSerie){
+					allSerie[w] = lesBD[y][3];
+					w += 1;
+				}
+			}
+
+			for (x = 0; x < listeAFiltrer.length; x++){//afficher tout les album correspondant au filtre
+				var idfiltre = listeAFiltrer[x].getAttribute("id");
+				for(y = 0; y < allSerie.length; y++){
+					if(idfiltre == allSerie[y]){
+						document.getElementById(idfiltre).style.display = "block";
+						trouver = true;
+					}
+				}
+			}
+		}
+
+		if (trouver == false){
+			aucunResult.style.display = "block";
+		}
+		else{
+			aucunResult.style.display = "none";
+		}
 	}
 
 	//FIN FILTRE

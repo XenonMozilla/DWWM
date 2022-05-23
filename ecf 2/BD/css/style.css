@@ -1,5 +1,6 @@
 body {
   font: 1em sans-serif;
+  background-color: aquamarine;
   padding: 0;
   margin: 0;
 }
@@ -55,4 +56,133 @@ input:focus:invalid {
 #listeBD{
   display: grid;
   grid-template-columns: 16% 16% 16% 16% 16% 16%;
+  margin-bottom: 100px;
+}
+
+#aucunResult{
+ grid-column: 1 / 7;
+ text-align: center;
+}
+
+.click{
+  width: 17px;
+  text-align: center;
+  background-color:#007bff;
+  border-color: #007bff;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+.click:hover{
+  cursor: pointer;
+}
+
+#divPanier{
+  border: solid black 2px;
+  background-color: pink;
+  width : 100%;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#divPanier h1{
+  margin-left: 30px;
+}
+
+.btn{
+  margin-right: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.container{
+  border: #000 solid 2px;
+  background-color: azure;
+  width: 100%;
+}
+
+#toPanier{
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 2px 2px 2px 2px;
+  border-radius: .25rem;
+  color: #fff;
+  background-color:#007bff;
+  border-color: #007bff;
+}
+
+#toPanier:hover{
+  cursor: pointer;
+}
+
+.bd{
+  margin-bottom: 10px;
+}
+
+.bd:hover{
+  cursor: pointer;
+}
+
+.row{
+  margin-bottom: 10px;
+}
+
+#albumMini{
+  display: none;
+}
+
+#radioettruc input{
+  margin-right: 4px;
+}
+
+#plusEtMoins{
+  display: flex;
+}
+
+@media screen and (min-width: 400px){
+  #albumMini{
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  #listeBD{
+    grid-template-columns: 28% 28% 28%;
+    margin-bottom: 130px;
+  }
+
+  #radioettruc{
+    display: flex;
+    flex-direction: column;
+  }
+  
+
+  #albumMini{
+    margin-left: 25%;
+    display: block;
+  }
+  
+  #toPanier{
+    margin-left: 20%;
+  }
+
+  .col-sm-8{
+    display: none;
+  }
+
+  .btn{
+    margin-right: 5px;
+
+  }
+  #divPanier{
+    width: 100%
+  }
+  #divPanier h1{
+    margin-left: 5px;
+    font-size: 32px;
+  }
 }
