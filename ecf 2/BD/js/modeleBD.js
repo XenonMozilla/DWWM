@@ -267,6 +267,7 @@ jQuery(document).ready(function ($) {
 
 		if(contenuPanier.innerHTML != ""){
 			panierVide.style.display = "none";
+			document.getElementById('commander').style.display = 'block'
 		}
 
 	}
@@ -328,6 +329,7 @@ jQuery(document).ready(function ($) {
 
 		if(contenuPanier.innerHTML == ""){
 			panierVide.style.display = "block";
+			document.getElementById('commander').style.display = 'none'
 		}
 	}
 
@@ -531,4 +533,15 @@ jQuery(document).ready(function ($) {
 	}
 
 	//FIN FILTRE
+
+	function AppelApi() {
+		var callBackGetSuccess = function (data) {
+		  var element = document.getElementById("api-meteo-p");
+		  element.innerHTML ="La temperature en Californie est de " + Math.round(data.main.temp)  + "°C avec comme temps : " + data.weather[0].description;
+		};
+		var url = "https://api.openweathermap.org/data/2.5/weather?q=California,USA&appid=c21a75b667d6f7abb81f118dcf8d4611&lang=fr&units=metric";
+	  
+		$.get(url, callBackGetSuccess);
+	  }
+	  AppelApi();
 });
