@@ -180,6 +180,7 @@ jQuery(document).ready(function ($) {
 	var nbrContenuPanier = document.getElementById('nbrContenuPanier');
 	var contenuPanier = document.getElementById("contenuPanier");
 	var totalPanier = document.getElementById("totalPanier");
+	var panierVide = document.getElementById("panierVide");
 
 	nbrContenuPanier.innerHTML = count;
 	totalPanier.innerHTML = total;
@@ -198,10 +199,7 @@ jQuery(document).ready(function ($) {
 		// console.log (hello + world);
 		var keep = 0;
 		var panierPrix = parseFloat(txtPrix.value);
-		var prixOriginal = parseFloat(txtPrix.value);
-
-
-		
+		var prixOriginal = parseFloat(txtPrix.value);	
 
 		for(x = 0; x < panier.length; x++){
 			if (panierTitle == panier[x].panierTitle){
@@ -229,10 +227,9 @@ jQuery(document).ready(function ($) {
 			total += panier[plus].prixOriginal;
 		}
 
-		
 		count += 1;
 		nbrContenuPanier.innerHTML = count;
-		totalPanier.innerHTML = Math.round(total*100)/100;;
+		totalPanier.innerHTML = Math.round(total*100)/100;
 
 
 		contenuPanier.innerHTML = "";
@@ -246,7 +243,7 @@ jQuery(document).ready(function ($) {
 			nouvItemPanier.setAttribute("class", "item");
 			nouvItemPanier.innerHTML += "<h4>" + panier[x].panierTitle + "</h4>";
 			nouvItemPanier.innerHTML += "<h6>nombre d'exemplaire : " + panier[x].nbrExemplaire + "</h6>";
-			nouvItemPanier.innerHTML += "<h6> prix : " + panier[x].panierPrix + " euro </h6>";
+			nouvItemPanier.innerHTML += "<h6> prix : " + (Math.round(panier[x].panierPrix*100)/100) + " euro </h6>";
 			nouvItemPanier.innerHTML += '<img src="' + panier[x].panierLinkAlbum + '">';
 			plusEtMoins.innerHTML += '<h4 class="click" id="ajou' + x + '">+</h4>';
 			plusEtMoins.innerHTML += '<h4 class="click" id="suppr' + x + '">-</h4>';
@@ -266,6 +263,10 @@ jQuery(document).ready(function ($) {
 					ajouterPanier(posiAjou);
 				});
 			})();
+		}
+
+		if(contenuPanier.innerHTML != ""){
+			panierVide.style.display = "none";
 		}
 
 	}
@@ -288,7 +289,7 @@ jQuery(document).ready(function ($) {
 		total -= prixARetier;
 		count -= 1;
 		nbrContenuPanier.innerHTML = count;
-		totalPanier.innerHTML = total;
+		totalPanier.innerHTML = Math.round(total*100)/100;
 
 		contenuPanier.innerHTML = "";
 
@@ -300,7 +301,7 @@ jQuery(document).ready(function ($) {
 			nouvItemPanier.setAttribute("class", "item");
 			nouvItemPanier.innerHTML += "<h4>" + panier[x].panierTitle + "</h4>";
 			nouvItemPanier.innerHTML += "<h6>nombre d'exemplaire : " + panier[x].nbrExemplaire + "</h6>";
-			nouvItemPanier.innerHTML += "<h6> prix : " + panier[x].panierPrix + " euro </h6>";
+			nouvItemPanier.innerHTML += "<h6> prix : " + (Math.round(panier[x].panierPrix*100)/100) + " euro </h6>";
 			nouvItemPanier.innerHTML += '<img src="' + panier[x].panierLinkAlbum + '">';
 			plusEtMoins.innerHTML += '<h4 class="click" id="ajou' + x + '">+</h4>';
 			plusEtMoins.innerHTML += '<h4 class="click" id="suppr' + x + '">-</h4>';
@@ -323,6 +324,10 @@ jQuery(document).ready(function ($) {
 					ajouterPanier(posiAjou);
 				});
 			})();
+		}
+
+		if(contenuPanier.innerHTML == ""){
+			panierVide.style.display = "block";
 		}
 	}
 
@@ -375,30 +380,36 @@ jQuery(document).ready(function ($) {
 
 	//DEBUT FILTRE
 	var listeAFiltrer = listeBD.getElementsByTagName("div");
-	document.getElementById("search").addEventListener("click", function(){
-		var unTitre = document.getElementById("unTitre");
-		var unAuteur = document.getElementById("unAuteur");
-		var uneSerie = document.getElementById("uneSerie");
-		var recherche = document.getElementById("recherche");
-		var erreur0Choix = document.getElementById("erreur0Choix");
-		var recherche = document.getElementById("champRecherche");
+	var recherche = document.getElementById("champRecherche");
+	var unTitre = document.getElementById("unTitre");
+	var unAuteur = document.getElementById("unAuteur");
+	var uneSerie = document.getElementById("uneSerie");
+	var erreur0Choix = document.getElementById("erreur0Choix");
+	var nouvRecherche = document.getElementById("champRecherche");
+		
+	recherche.addEventListener("keyup", function(){
 		if (unTitre.checked == false && unAuteur.checked == false && uneSerie.checked == false){
 			erreur0Choix.style.display = "block";
 		}
+		
 		else if(unTitre.checked == true){
 			document.getElementById("reset").style.display = "block";
 			erreur0Choix.style.display = "none";
-			filtrer("titre",recherche.value);
+			filtrer("titre",nouvRecherche.value);
 		}
 		else if(unAuteur.checked == true){
 			document.getElementById("reset").style.display = "block";
 			erreur0Choix.style.display = "none";
-			filtrer("auteur",recherche.value);
+			filtrer("auteur",nouvRecherche.value);
 		}
 		else if(uneSerie.checked == true){
 			document.getElementById("reset").style.display = "block";
 			erreur0Choix.style.display = "none";
-			filtrer("serie",recherche.value);
+			filtrer("serie",nouvRecherche.value);
+		}
+		if(nouvRecherche.value == ""){
+			document.getElementById("reset").style.display = "none";
+			erreur0Choix.style.display = "none";
 		}
 	});
 
@@ -406,14 +417,15 @@ jQuery(document).ready(function ($) {
 		for (x = 0; x < listeAFiltrer.length; x++){
 			listeAFiltrer[x].style.display = 'block';		
 		}
+
 		document.getElementById("reset").style.display = "none";
 		aucunResult.style.display = "none";
+		document.getElementById("champRecherche").value = "";
+		unTitre.checked = false;
+		unAuteur.checked = false;
+		uneSerie.checked = false;
 	});
 
-	
-
-
-	
 	function filtrer(status,results){
 		var trouver = new Boolean;
 
@@ -425,7 +437,7 @@ jQuery(document).ready(function ($) {
 			var allTitre = new Array;
 			var w = 0;
 			for(y = 0; y < lesBD.length; y++){//chercher le titre de l'album pour avoir l'id album
-				if(lesBD[y][0] ==  results){
+				if(lesBD[y][0].toLowerCase().includes(results.toLowerCase())){
 					allTitre[w] = lesBD[y][3];
 					w += 1;
 				}
@@ -434,8 +446,8 @@ jQuery(document).ready(function ($) {
 			for(x = 0; x < listeAFiltrer.length; x++) {//afficher tout les album correspondant au filtre
 				var idfiltre = listeAFiltrer[x].getAttribute("id");
 				for(y = 0; y < allTitre.length; y++){
-					if(idfiltre == allTitre){
-						document.getElementById(idfiltre[y]).style.display = "block";
+					if(idfiltre == allTitre[y]){
+						document.getElementById(idfiltre).style.display = "block";
 						trouver = true;
 					}
 				}
@@ -443,22 +455,28 @@ jQuery(document).ready(function ($) {
 		}
 				
 		if (status == "auteur"){//trier par auteur
-			var cetteAuteur;
+			var cetteAuteur = new Array;
+			var w = 0;
 			for (const element of auteurs) {//chercher l'auteur pour avoir l'id auteur
-				if (element[1].nom == results){
-					cetteAuteur = element[0];
+				if (element[1].nom.toLowerCase().includes(results.toLowerCase())){
+					cetteAuteur[w] = element[0];
+					w+=1;
 				}
 			}
 
 			var allAuteur = new Array;
-			var w = 0;
+			w = 0;
 
-			for (y = 0; y < lesBD.length; y++){//chercher l'id auteur pour avoir l'id album
-				if(lesBD[y][4] == cetteAuteur){
-					allAuteur[w] = lesBD[y][3];
-					w += 1;
+			for (x = 0; x < cetteAuteur.length; x++){
+				for (y = 0; y < lesBD.length; y++){//chercher l'id auteur pour avoir l'id album
+					if(lesBD[y][4] == cetteAuteur[x]){
+						allAuteur[w] = lesBD[y][3];
+						w += 1;
+					}
 				}
 			}
+
+			
 
 			for (x = 0; x < listeAFiltrer.length; x++){//afficher tout les album correspondant au filtre
 				var idfiltre = listeAFiltrer[x].getAttribute("id");
@@ -472,21 +490,24 @@ jQuery(document).ready(function ($) {
 		}
 
 		if (status == "serie"){//trier par serie
-			var cetteSerie;
+			var cetteSerie = new Array;
+			var w = 0;
 			for (const element of series) {
-				if (element[1].nom == results){//chercher la serie pour avoir l'id serie
-					console.log(element[1].nom)
-					cetteSerie = element[0];
+				if (element[1].nom.toLowerCase().includes(results.toLowerCase())){//chercher la serie pour avoir l'id serie
+					cetteSerie[w] = element[0];
+					w += 1;
 				}
 			}
 
 			var allSerie = new Array;
-			var w = 0;
-
+			w = 0;
+			
 			for (y = 0; y < lesBD.length; y++){//chercher l'id serie pour avoir l'id album
-				if(lesBD[y][1] == cetteSerie){
-					allSerie[w] = lesBD[y][3];
-					w += 1;
+				for (x = 0; x < cetteSerie.length; x++){
+					if(lesBD[y][1] == cetteSerie[x]){
+						allSerie[w] = lesBD[y][3];
+						w += 1;
+					}
 				}
 			}
 
@@ -510,5 +531,4 @@ jQuery(document).ready(function ($) {
 	}
 
 	//FIN FILTRE
-
 });

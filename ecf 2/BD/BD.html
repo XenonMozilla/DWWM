@@ -57,8 +57,8 @@
           <div>
             <input type="radio" id="uneSerie" name="1"><label>recherche par serie</label>
           </div>
-          <input type="text" placeholder="recherche" id="champRecherche">
-          <input type="button" value="chercher" id="search"><label style="display: none;" id="erreur0Choix">erreur : aucun choix selectionner</label>
+          <input type="search" placeholder="recherche" id="champRecherche">
+          <label style="display: none;" id="erreur0Choix">erreur : aucun choix selectionner</label>
           <input type="button" value="reset" id="reset" style="display: none;">
         </div>
         
@@ -84,6 +84,7 @@
                 </button>
               </div>
               <div class="modal-body">
+                <div id="panierVide"><p>Panier vide, veuillez le remplir</p></div>
                 <div id="contenuPanier"></div>
               </div>
               <div class="modal-footer">

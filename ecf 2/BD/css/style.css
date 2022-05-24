@@ -143,6 +143,10 @@ input:focus:invalid {
   display: flex;
 }
 
+#champRecherche{
+  margin-bottom: 10px;
+}
+
 @media screen and (min-width: 400px){
   #albumMini{
     display: none !important;
