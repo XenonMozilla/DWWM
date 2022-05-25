@@ -1,8 +1,11 @@
 body {
   font: 1em sans-serif;
-  background-color: aquamarine;
   padding: 0;
   margin: 0;
+  background-image: url(../images/e09b2ad69b1abdb8e014b30d79f23edd.jpg);
+  background-attachment: fixed;
+  font-family: 'Coming Soon', cursive;
+  font-weight: bold !important;
 }
 
 form {
@@ -49,6 +52,10 @@ input:focus:invalid {
   outline: none;
 }
 
+#radioettruc label{
+  user-select: none;
+}
+
 #erreur {
   color: red;
 }
@@ -56,7 +63,7 @@ input:focus:invalid {
 #listeBD{
   display: grid;
   grid-template-columns: 16% 16% 16% 16% 16% 16%;
-  margin-bottom: 100px;
+  margin-bottom: 60px;
 }
 
 #aucunResult{
@@ -79,7 +86,7 @@ input:focus:invalid {
 
 #divPanier{
   border: solid black 2px;
-  background-color: pink;
+  background-color: #ffd1ef;
   width : 100%;
   position: fixed;
   left: 0px;
@@ -104,15 +111,28 @@ input:focus:invalid {
   width: 100%;
 }
 
+.credit{
+  margin-bottom: 70px;
+  text-align: center;
+}
+
+@keyframes transition {
+  0%   { margin-top: 70px;opacity:0; }
+  100% { margin-top: 10px;opacity:1; }
+  }
+
 #toPanier{
-  margin-left: 10px;
-  margin-top: 10px;
+  margin-left: 35%;
+  margin-top: 30px;
   margin-bottom: 10px;
   padding: 2px 2px 2px 2px;
   border-radius: .25rem;
   color: #fff;
   background-color:#007bff;
   border-color: #007bff;
+  text-align: center;
+  width: 30%;
+  user-select: none;
 }
 
 #toPanier:hover{
@@ -120,7 +140,7 @@ input:focus:invalid {
 }
 
 .bd{
-  margin-bottom: 10px;
+  opacity:0;animation: transition 1s ease-in-out 0s forwards;
 }
 
 .bd:hover{
@@ -147,9 +167,22 @@ input:focus:invalid {
   margin-bottom: 10px;
 }
 
+#plusEtMoins{
+  user-select: none;
+}
+
 #api-meteo-p{
   text-align: center;
   margin-top: 10px;
+}
+
+.appel-api-meteo{
+  background-color: #fff;
+  border: #000 solid 2px;
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 @media screen and (min-width: 400px){
@@ -161,7 +194,6 @@ input:focus:invalid {
 @media screen and (max-width: 390px) {
   #listeBD{
     grid-template-columns: 28% 28% 28%;
-    margin-bottom: 130px;
   }
 
   #radioettruc{
@@ -171,12 +203,13 @@ input:focus:invalid {
   
 
   #albumMini{
-    margin-left: 25%;
+    margin-left: 30%;
     display: block;
   }
   
   #toPanier{
-    margin-left: 20%;
+    margin-left: 15%;
+    width : 70%;
   }
 
   .col-sm-8{
@@ -193,5 +226,9 @@ input:focus:invalid {
   #divPanier h1{
     margin-left: 5px;
     font-size: 32px;
+  }
+
+  .credit{
+    margin-bottom: 130px;
   }
 }

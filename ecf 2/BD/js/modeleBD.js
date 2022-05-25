@@ -1,5 +1,3 @@
-// const { parse } = require("@vue/compiler-dom");
-
 jQuery(document).ready(function ($) {
 	const srcImg = "images/"; // emplacement des images de l'appli
 	const albumDefaultMini = srcImg + "noComicsMini.jpeg";
@@ -7,49 +5,17 @@ jQuery(document).ready(function ($) {
 	const srcAlbumMini = "albumsMini/"; // emplacement des images des albums en petit
 	const srcAlbum = "albums/"; // emplacement des images des albums en grand
 
-	/*
-	// Lecture d'un album
-	console.log("Lecture d'un album");
-	var album = albums.get("5");
-	var serie = series.get(album.idSerie);
-	var auteur = auteurs.get(album.idAuteur);
-	console.log(album.titre+" "+serie.nom+" "+auteur.nom);
-	*/
-
-	/*
-	console.log("Liste des albums");
-	albums.forEach(album => {
-	    serie = series.get(album.idSerie);
-	    auteur = auteurs.get(album.idAuteur);
-	    console.log(album.titre+" N°"+album.numero+" Série:"+serie.nom+" Auteur:"+auteur.nom);
-	});
-	*/
-
-	/*
-	console.log("Liste des albums par série");
-	for(var [idSerie, serie] of series.entries()) {
-	    // Recherche des albums de la série
-	    for (var [idAlbum, album] of albums.entries()) {
-	        if (album.idSerie == idSerie) {
-	            console.log(serie.nom+", Album N°"+album.numero+" "+album.titre+", Auteur:"+auteurs.get(album.idAuteur).nom);
-	        }
-	    }
-	    
+	//api meteo
+	function AppelApi() {
+		var callBackGetSuccess = function (data) {
+		  var element = document.getElementById("api-meteo-p");
+		  element.innerHTML ="La temperature en Californie est de " + Math.round(data.main.temp)  + "°C avec comme temps : " + data.weather[0].description;
+		};
+		var url = "https://api.openweathermap.org/data/2.5/weather?q=California,USA&appid=c21a75b667d6f7abb81f118dcf8d4611&lang=fr&units=metric";
+	  
+		$.get(url, callBackGetSuccess);
 	}
-	*/
-
-	/*
-	console.log("Liste des albums par auteur");
-	for(var [idAuteur, auteur] of auteurs.entries()) {
-	    // Recherche des albums de l'auteur
-	    for (var [idAlbum, album] of albums.entries()) {
-	        if (album.idAuteur == idAuteur) {
-	            console.log(auteur.nom+", Album N°"+album.numero+" "+album.titre+", Série:"+series.get(album.idSerie).nom);
-	        }
-	    }
-	    
-	}
-	*/
+	AppelApi();
 
 	// Affichage des BD
 	var txtSerie = document.getElementById("serie");
@@ -81,7 +47,6 @@ jQuery(document).ready(function ($) {
 		getAlbum(this.value)
 	});
 
-
 	/**
 	 * Récupération de l'album par son id et appel de 
 	 * la fonction d'affichage
@@ -100,7 +65,6 @@ jQuery(document).ready(function ($) {
 			txtPrix.value = 0;
 			toPanier.style.display = "none";
 
-
 			afficheAlbums($("#albumMini"), $("#album"), albumDefaultMini, albumDefault);
 
 		} else {
@@ -116,7 +80,6 @@ jQuery(document).ready(function ($) {
 			txtPrix.value = album.prix;
 			toPanier.style.display = "block";
 
-
 			var nomFic = serie.nom + "-" + album.numero + "-" + album.titre;
 
 			// Utilisation d'une expression régulière pour supprimer 
@@ -129,9 +92,6 @@ jQuery(document).ready(function ($) {
 				srcAlbumMini + nomFic + ".jpg",
 				srcAlbum + nomFic + ".jpg"
 			);
-
-			
-
 		}
 	}
 
@@ -155,8 +115,6 @@ jQuery(document).ready(function ($) {
 				});
 			})
 		});
-
-
 	}
 
 	/**
@@ -170,7 +128,6 @@ jQuery(document).ready(function ($) {
 		if (element.id === "albumMini")
 			element.src = albumDefaultMini;
 		else element.src = albumDefault;
-
 	}
 
 	//affichage panier
@@ -181,6 +138,7 @@ jQuery(document).ready(function ($) {
 	var contenuPanier = document.getElementById("contenuPanier");
 	var totalPanier = document.getElementById("totalPanier");
 	var panierVide = document.getElementById("panierVide");
+	document.getElementById('commander').style.display = 'none'
 
 	nbrContenuPanier.innerHTML = count;
 	totalPanier.innerHTML = total;
@@ -231,10 +189,8 @@ jQuery(document).ready(function ($) {
 		nbrContenuPanier.innerHTML = count;
 		totalPanier.innerHTML = Math.round(total*100)/100;
 
-
 		contenuPanier.innerHTML = "";
 
-		
 		for (x = 0; x < panier.length; x++){
 			var nouvItemPanier = document.createElement('div');
 			var plusEtMoins = document.createElement('div');
@@ -412,6 +368,30 @@ jQuery(document).ready(function ($) {
 		if(nouvRecherche.value == ""){
 			document.getElementById("reset").style.display = "none";
 			erreur0Choix.style.display = "none";
+		}		
+	});
+
+	unTitre.addEventListener("click",function(){
+		if(nouvRecherche.value != ""){
+			document.getElementById("reset").style.display = "block";
+			erreur0Choix.style.display = "none";
+			filtrer("titre",nouvRecherche.value);
+		}
+	});
+
+	unAuteur.addEventListener("click",function(){
+		if(nouvRecherche.value != ""){
+			document.getElementById("reset").style.display = "block";
+			erreur0Choix.style.display = "none";
+			filtrer("auteur",nouvRecherche.value);
+		}
+	});
+
+	uneSerie.addEventListener("click",function(){
+		if(nouvRecherche.value != ""){
+			document.getElementById("reset").style.display = "block";
+			erreur0Choix.style.display = "none";
+			filtrer("serie",nouvRecherche.value);
 		}
 	});
 
@@ -433,115 +413,105 @@ jQuery(document).ready(function ($) {
 
 		for(x = 0; x < listeAFiltrer.length; x++){//cacher tout les album pour afficher ceux du filtre
 				listeAFiltrer[x].style.display = "none";
-			}
+		}
 
-		if (status == "titre"){ //filtrer par titre
-			var allTitre = new Array;
-			var w = 0;
-			for(y = 0; y < lesBD.length; y++){//chercher le titre de l'album pour avoir l'id album
-				if(lesBD[y][0].toLowerCase().includes(results.toLowerCase())){
-					allTitre[w] = lesBD[y][3];
-					w += 1;
+		setTimeout(function(){
+			if (status == "titre"){ //filtrer par titre
+				var allTitre = new Array;
+				var w = 0;
+				for(y = 0; y < lesBD.length; y++){//chercher le titre de l'album pour avoir l'id album
+					if(lesBD[y][0].toLowerCase().includes(results.toLowerCase())){
+						allTitre[w] = lesBD[y][3];
+						w += 1;
+					}
 				}
-			}
-
-			for(x = 0; x < listeAFiltrer.length; x++) {//afficher tout les album correspondant au filtre
-				var idfiltre = listeAFiltrer[x].getAttribute("id");
-				for(y = 0; y < allTitre.length; y++){
-					if(idfiltre == allTitre[y]){
-						document.getElementById(idfiltre).style.display = "block";
-						trouver = true;
+	
+				for(x = 0; x < listeAFiltrer.length; x++) {//afficher tout les album correspondant au filtre
+					var idfiltre = listeAFiltrer[x].getAttribute("id");
+					for(y = 0; y < allTitre.length; y++){
+						if(idfiltre == allTitre[y]){
+							document.getElementById(idfiltre).style.display = "block";
+							trouver = true;
+						}
 					}
 				}
 			}
-		}
+					
+			if (status == "auteur"){//trier par auteur
+				var cetteAuteur = new Array;
+				var w = 0;
+				for (const element of auteurs) {//chercher l'auteur pour avoir l'id auteur
+					if (element[1].nom.toLowerCase().includes(results.toLowerCase())){
+						cetteAuteur[w] = element[0];
+						w+=1;
+					}
+				}
+	
+				var allAuteur = new Array;
+				w = 0;
+	
+				for (x = 0; x < cetteAuteur.length; x++){
+					for (y = 0; y < lesBD.length; y++){//chercher l'id auteur pour avoir l'id album
+						if(lesBD[y][4] == cetteAuteur[x]){
+							allAuteur[w] = lesBD[y][3];
+							w += 1;
+						}
+					}
+				}
+	
+				for (x = 0; x < listeAFiltrer.length; x++){//afficher tout les album correspondant au filtre
+					var idfiltre = listeAFiltrer[x].getAttribute("id");
+					for(y = 0; y < allAuteur.length; y++){
+						if(idfiltre == allAuteur[y]){
+							document.getElementById(idfiltre).style.display = "block";
+							trouver = true;
+						}
+					}
+				}
+			}
+	
+			if (status == "serie"){//trier par serie
+				var cetteSerie = new Array;
+				var w = 0;
+				for (const element of series) {
+					if (element[1].nom.toLowerCase().includes(results.toLowerCase())){//chercher la serie pour avoir l'id serie
+						cetteSerie[w] = element[0];
+						w += 1;
+					}
+				}
+	
+				var allSerie = new Array;
+				w = 0;
 				
-		if (status == "auteur"){//trier par auteur
-			var cetteAuteur = new Array;
-			var w = 0;
-			for (const element of auteurs) {//chercher l'auteur pour avoir l'id auteur
-				if (element[1].nom.toLowerCase().includes(results.toLowerCase())){
-					cetteAuteur[w] = element[0];
-					w+=1;
+				for (y = 0; y < lesBD.length; y++){//chercher l'id serie pour avoir l'id album
+					for (x = 0; x < cetteSerie.length; x++){
+						if(lesBD[y][1] == cetteSerie[x]){
+							allSerie[w] = lesBD[y][3];
+							w += 1;
+						}
+					}
 				}
-			}
-
-			var allAuteur = new Array;
-			w = 0;
-
-			for (x = 0; x < cetteAuteur.length; x++){
-				for (y = 0; y < lesBD.length; y++){//chercher l'id auteur pour avoir l'id album
-					if(lesBD[y][4] == cetteAuteur[x]){
-						allAuteur[w] = lesBD[y][3];
-						w += 1;
+	
+				for (x = 0; x < listeAFiltrer.length; x++){//afficher tout les album correspondant au filtre
+					var idfiltre = listeAFiltrer[x].getAttribute("id");
+					for(y = 0; y < allSerie.length; y++){
+						if(idfiltre == allSerie[y]){
+							document.getElementById(idfiltre).style.display = "block";
+							
+							trouver = true;
+						}
 					}
 				}
 			}
-
 			
-
-			for (x = 0; x < listeAFiltrer.length; x++){//afficher tout les album correspondant au filtre
-				var idfiltre = listeAFiltrer[x].getAttribute("id");
-				for(y = 0; y < allAuteur.length; y++){
-					if(idfiltre == allAuteur[y]){
-						document.getElementById(idfiltre).style.display = "block";
-						trouver = true;
-					}
-				}
+			if (trouver == false){
+				aucunResult.style.display = "block";
 			}
-		}
-
-		if (status == "serie"){//trier par serie
-			var cetteSerie = new Array;
-			var w = 0;
-			for (const element of series) {
-				if (element[1].nom.toLowerCase().includes(results.toLowerCase())){//chercher la serie pour avoir l'id serie
-					cetteSerie[w] = element[0];
-					w += 1;
-				}
+			else{
+				aucunResult.style.display = "none";
 			}
 
-			var allSerie = new Array;
-			w = 0;
-			
-			for (y = 0; y < lesBD.length; y++){//chercher l'id serie pour avoir l'id album
-				for (x = 0; x < cetteSerie.length; x++){
-					if(lesBD[y][1] == cetteSerie[x]){
-						allSerie[w] = lesBD[y][3];
-						w += 1;
-					}
-				}
-			}
-
-			for (x = 0; x < listeAFiltrer.length; x++){//afficher tout les album correspondant au filtre
-				var idfiltre = listeAFiltrer[x].getAttribute("id");
-				for(y = 0; y < allSerie.length; y++){
-					if(idfiltre == allSerie[y]){
-						document.getElementById(idfiltre).style.display = "block";
-						trouver = true;
-					}
-				}
-			}
-		}
-
-		if (trouver == false){
-			aucunResult.style.display = "block";
-		}
-		else{
-			aucunResult.style.display = "none";
-		}
+		},0);
 	}
-
 	//FIN FILTRE
-
-	function AppelApi() {
-		var callBackGetSuccess = function (data) {
-		  var element = document.getElementById("api-meteo-p");
-		  element.innerHTML ="La temperature en Californie est de " + Math.round(data.main.temp)  + "°C avec comme temps : " + data.weather[0].description;
-		};
-		var url = "https://api.openweathermap.org/data/2.5/weather?q=California,USA&appid=c21a75b667d6f7abb81f118dcf8d4611&lang=fr&units=metric";
-	  
-		$.get(url, callBackGetSuccess);
-	  }
-	  AppelApi();
 });

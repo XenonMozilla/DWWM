@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/640px-Book-icon-bible.png">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Microbe&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap" rel="stylesheet">
     <title>Les BD</title>
 </head>
 
@@ -16,7 +19,7 @@
         <div class="appel-api-meteo">
           <p id="api-meteo-p"></p>
         </div>
-        <h1>Liste des BD</h1>
+        <h1 style="text-align: center;">La bibliothéque</h1>
 
         <div class="row">
             <div class="col-sm-4 col-lg-6">
@@ -41,6 +44,7 @@
                     <label for="prix">Prix :</label>
                     <input type="number" id="prix" readonly>
                 </p>
+                <div id="toPanier">Cliquer pour envoyer au panier</div>
                 <div is="toto">
                     <img src="images/noComicsMini.jpeg" id="albumMini">
                 </div>
@@ -48,17 +52,17 @@
             <div class="col-sm-8 col-lg-6">
                 <img src="images/noComics.jpeg" id="album">
             </div>
-          <div id="toPanier">Cliquer pour envoyer au panier</div>
+          
         </div>
         <div id="radioettruc">
           <div>
-            <input type="radio" id="unTitre" name="1"><label>recherche par titre</label>
+            <label><input type="radio" id="unTitre" name="1">recherche par titre</label>
           </div>
           <div>
-            <input type="radio" id="unAuteur" name="1"><label>recherche par auteur</label>
+            <label><input type="radio" id="unAuteur" name="1">recherche par auteur</label>
           </div>
           <div>
-            <input type="radio" id="uneSerie" name="1"><label>recherche par serie</label>
+            <label><input type="radio" id="uneSerie" name="1">recherche par serie</label>
           </div>
           <input type="search" placeholder="recherche" id="champRecherche">
           <label style="display: none;" id="erreur0Choix">erreur : aucun choix selectionner</label>
@@ -67,6 +71,10 @@
         
         <section id="listeBD">
             <h1 id="aucunResult">Aucun Resultat</p>
+        </section>
+
+        <section>
+          <p class="credit">site fait par Alexis Poulet</p>
         </section>
 
         <footer id="divPanier">
